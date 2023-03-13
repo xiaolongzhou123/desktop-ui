@@ -35,12 +35,12 @@ Axios.interceptors.response.use(response => {
 
 
 
-// 通用的请求函数
-export async function request<T>(config: AxiosRequestConfig) {
-    return Axios
-        .request<IResponseData<T>>(config)
-        .then((res) => res.data.data);
-}
+// // 通用的请求函数
+// export async function request1<T>(config: AxiosRequestConfig) {
+//     return Axios
+//         .request<IResponseData<T>>(config)
+//         .then((res) => res.data.data);
+// }
 
 
 

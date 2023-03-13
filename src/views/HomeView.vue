@@ -8,11 +8,13 @@ import { reactive } from 'vue';
 
 
 
-
-GetNav().then((list:IData) => {
-  list.mydata.forEach(function (e:Mydata) {
-    console.log(e.id);
-});
+//{"code":200,"message":"ok","data":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}]}
+//后端的数组结构，必须按，code,message,data来做处理
+//后端必须直接返回数据结构
+GetNav().then((list:Mydata[]) => {
+ list.forEach((e:Mydata)=>{
+  console.log(e.id)
+ })
 });
 
 
