@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { GetNav } from '@/utils/user'
+import type { Mydata,IData } from '@/utils/user'
 
-export interface INav {
-  userId: number
-  id: number
-  title: string
-  completed: boolean
-}
+import type { AxiosResponse } from 'axios'
+import { reactive } from 'vue';
 
 
-GetNav().then((list: any) => {
-  console.log(list)
+
+
+
+GetNav().then((list:IData) => {
+  list.mydata.forEach(function (e:Mydata) {
+    console.log(e.id);
+});
 });
 
 

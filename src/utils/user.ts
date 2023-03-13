@@ -4,18 +4,24 @@ import type { AxiosResponse } from 'axios'
 
 
 
-export interface INav {
-    userId: number
-    id: number
-    title: string
-    completed: boolean
+
+
+export interface Mydata {
+    id: number;
+    name: string;
+}
+
+export interface IData {
+    mydata: Mydata[];
+    succes: boolean;
 }
 
 
-export async function GetNav() {
-    return request<INav>({
+//{"mydata":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}],"succes":true}
+export  function GetNav() {
+    return request<any,IData>({
         url: "/api/nav",
         method: "get",
-    });
+    })
 }
 
