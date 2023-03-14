@@ -5,40 +5,30 @@ import { defineStore } from "pinia"
 
 
 export const useNav = defineStore('nav', {
-    state: () => ({ 
-        count: 0,
-        name: 'abc',
-        navList:[] as Nav[]
-    }),
-    getters: {
-      double: (state) => state.count * 2,
-    },
-    actions: {
-      UpdateNav(nav:Nav[]) {
-        this.navList=nav
-      }
+  state: () => ({
+    count: 0,
+    name: 'abc',
+    navList: [] as Nav[]
+  }),
+  getters: {
+    double: (state) => state.count * 2,
+  },
+  actions: {
+    UpdateNav(nav: Nav[]) {
+      this.navList = nav
     }
+  },
+  persist: {
+    enabled: true,
+    strategies: [{
+      // 自定义存储的 key，默认是 store.$id
+      //key: "custom storageKey",
+      // 可以指定任何 extends Storage 的实例，默认是 sessionStorage,localStorage
+      storage: sessionStorage,
+      // state 中的字段名，按组打包储存
+      paths: ["navList"]
+    }]
+  }
 })
- 
-//  export  const useNav = defineStore('counter', () => {
-//     const count = ref(0)
-//     const name =ref('abc')
-//     let  navList=[] as Nav[]
-    
-//     persist:{
-//       enable:true
-//     }
-//     getters:{}
-  
-//     actions:{
-//         function increment() {
-//             count.value++
-//           }
-//           function UpdateNav(nav:Nav[]) {
-//             navList=nav
-//           }
-//     }
-//     return {name,navList}
-  
-//   })
-  
+
+

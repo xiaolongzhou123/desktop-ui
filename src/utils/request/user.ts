@@ -10,11 +10,11 @@ import type { IResponseData } from '@/typeing/axios'
 
 
 //{"mydata":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}],"succes":true}
-export  function GetNav() {
-    return request<any,IResponseData>({
+export function GetNav() {
+    return request<any, IResponseData>({
         url: "/api/nav",
         method: "get",
-    }).then(res=>{
+    }).then(res => {
         return res.data
     })
 }
