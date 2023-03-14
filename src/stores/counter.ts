@@ -7,6 +7,12 @@ export const useCounterStore = defineStore('counter', () => {
   function increment() {
     count.value++
   }
+  persist:{
+    enable:true
+  }
+  getters:{}
+
+  actions:{}
 
   return { count, doubleCount, increment }
 })

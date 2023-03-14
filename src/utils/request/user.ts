@@ -1,21 +1,12 @@
-import request from '@/utils/axios'
+import request from '@/utils/request/axios'
 import type { AxiosResponse } from 'axios'
-import type { IResponseData } from '@/utils/axios'
+import type { IResponseData } from '@/typeing/axios'
 
 
 
 
 
 
-export interface Mydata {
-    id: number;
-    name: string;
-}
-
-export interface IData {
-    mydata: Mydata[];
-    succes: boolean;
-}
 
 
 //{"mydata":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}],"succes":true}
