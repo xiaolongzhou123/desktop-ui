@@ -2,7 +2,7 @@
 import axios, { type AxiosRequestConfig } from 'axios'
 const env = import.meta.env.VITE_API_BASE_URL;
 // const ConfigBaseURL = env.VITE_APP_BASE_SERVER + env.VITE_API_BASE_URL //默认路径，这里也可以使用env来判断环境
-const Axios = axios.create({
+const request = axios.create({
     timeout: 5000, // 请求超时时间
     baseURL: '',
     headers: {
@@ -19,12 +19,12 @@ export interface IResponseData<T = any> {
 
 
 // 添加请求拦截器
-Axios.interceptors.request.use(config => {
+request.interceptors.request.use(config => {
     // console.log(config)
     return config
 })
 // 添加响应拦截器
-Axios.interceptors.response.use(response => {
+request.interceptors.response.use(response => {
     return response.data
 }, error => {
     console.log('Response: error', error)
@@ -44,4 +44,4 @@ Axios.interceptors.response.use(response => {
 
 
 
-export default Axios;
+export default request;

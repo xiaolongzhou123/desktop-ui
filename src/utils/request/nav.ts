@@ -1,6 +1,6 @@
 import request from '@/utils/request/axios'
-import type { AxiosResponse } from 'axios'
-import type { IResponseData } from '@/typeing/axios'
+
+import type { IResponseData, Nav } from '@/typeing'
 
 
 
@@ -11,7 +11,7 @@ import type { IResponseData } from '@/typeing/axios'
 
 //{"mydata":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}],"succes":true}
 export function GetNav() {
-    return request<any, IResponseData>({
+    return request<any, IResponseData<Nav[]>>({
         url: "/api/nav",
         method: "get",
     }).then(res => {

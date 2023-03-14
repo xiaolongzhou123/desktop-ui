@@ -55,6 +55,7 @@ router.beforeEach((to, from, next) => {
       path: '/:pathMatch(.*)',
       redirect: '404',
     })
+
     if (router.getRoutes().length !== 3) {
       return next({ path: to.path })
     }
