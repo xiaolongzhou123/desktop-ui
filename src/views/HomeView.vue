@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { GetNav } from '@/utils/request/user'
-import type { Nav } from '@/typeing/nav'
 
-import { useNav } from '@/stores/nav'
+// import { GetMenu } from '@/utils/request/menu'
+// import { GetNav } from '@/utils/request/user'
+import { GetNav, GetMenu } from '@/utils/request'
+import type { Menu, Nav } from '@/typeing'
+
+import { useNav, useMenu } from '@/stores'
+
 const navstore = useNav() // uses the testing pinia!
-
+const menustore = useMenu() // uses the testing pinia!
 
 //git clone https://github.com/xiaolongzhou123/vue3-api
 //{"code":200,"message":"ok","data":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}]}
@@ -12,6 +16,9 @@ const navstore = useNav() // uses the testing pinia!
 //后端必须直接返回数据结构
 GetNav().then((list: Nav[]) => {
   navstore.UpdateNav(list)
+});
+GetMenu().then((list: Menu[]) => {
+  menustore.UpdateMenu(list)
 });
 
 
@@ -23,6 +30,11 @@ GetNav().then((list: Nav[]) => {
     {{ navstore.$state.name }}
     <template v-for="(item, index) in navstore.navList" :key="index">
       <h1>{{ item.name }}</h1>
+    </template>
+
+
+    <template v-for="(item, index) in menustore.List" :key="index">
+      <h1>{{ item }}</h1>
     </template>
 
   </div>

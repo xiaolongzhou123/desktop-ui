@@ -20,7 +20,7 @@ export interface IResponseData<T = any> {
 
 // 添加请求拦截器
 Axios.interceptors.request.use(config => {
-    console.log(config)
+    // console.log(config)
     return config
 })
 // 添加响应拦截器
