@@ -1,6 +1,11 @@
 // src/axios.ts
 import axios, { type AxiosRequestConfig } from 'axios'
-const env = import.meta.env.VITE_API_BASE_URL;
+import { useLogin } from '@/stores'
+import router from '@/router'
+
+
+
+
 // const ConfigBaseURL = env.VITE_APP_BASE_SERVER + env.VITE_API_BASE_URL //默认路径，这里也可以使用env来判断环境
 const request = axios.create({
     timeout: 5000, // 请求超时时间
@@ -20,14 +25,21 @@ export interface IResponseData<T = any> {
 
 // 添加请求拦截器
 request.interceptors.request.use(config => {
-    // console.log(config)
+    const loginstore = useLogin()
+    console.log("request=====", config)
+    if (config.url !== '/api/login' && loginstore.Info.access_token !== undefined) {
+        config.headers.Authorization = loginstore.Info.access_token
+    }
     return config
 })
 // 添加响应拦截器
 request.interceptors.response.use(response => {
+    console.log("response.use(response)===", response)
     return response.data
 }, error => {
-    console.log('Response: error', error)
+    // if (error.response.status === 401) {
+    //     router.push("/login")
+    // }
     const msg = error.Message !== undefined ? error.Message : ''
     // alert(msg)
     return Promise.reject(error)

@@ -3,6 +3,9 @@ import HomeView from '../views/HomeView.vue'
 
 import type { Menu, Nav } from '@/typeing'
 import { useMenu } from '@/stores'
+import { useLogin } from '@/stores'
+
+
 
 
 const router = createRouter({
@@ -11,9 +14,9 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      // component: HomeView,
-      redirect: "/login",
-      children: []
+      component: HomeView,
+      //  redirect: "/login",
+      //children: []
     },
     {
       path: '/login',
@@ -30,36 +33,35 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-
+  const loginstore = useLogin()
   console.log("to===:", to, router.getRoutes().length)
-
-
   //判断登陆状态
+  // if (loginstore.Info.access_token !== "") {
+  //   next({ path: '/login' })
+  // }
+  next()
 
 
 
+  // //如果静态路由过少。等于静态配置。那么就直接。动态添加路由
+  // if (router.getRoutes().length === 3) {
+  //   const menu = useMenu()
+  //   const routers = generateRouter(menu.menuList)
+  //   routers.filter(one => {
+  //     console.log("one", one)
+  //     router.addRoute(one)
+  //     // next({ path: one.path })
+  //   })
+  //   //这里把，非正常的页面动态加载
+  //   router.addRoute({
+  //     path: '/:pathMatch(.*)',
+  //     redirect: '404',
+  //   })
 
-
-
-  //如果静态路由过少。等于静态配置。那么就直接。动态添加路由
-  if (router.getRoutes().length === 3) {
-    const menu = useMenu()
-    const routers = generateRouter(menu.menuList)
-    routers.filter(one => {
-      console.log("one", one)
-      router.addRoute(one)
-      // next({ path: one.path })
-    })
-    //这里把，非正常的页面动态加载
-    router.addRoute({
-      path: '/:pathMatch(.*)',
-      redirect: '404',
-    })
-
-    if (router.getRoutes().length !== 3) {
-      return next({ path: to.path })
-    }
-  }
+  //   if (router.getRoutes().length !== 3) {
+  //     return next({ path: to.path })
+  //   }
+  // }
 
 
   next()
