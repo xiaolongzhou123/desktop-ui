@@ -8,7 +8,7 @@ export const useMenu = defineStore('menu', {
     count: 0,
     name: 'abc',
     Auth: false,
-
+    collapsed: false,
     menuList: [] as Menu[]
   }),
   getters: {
@@ -22,6 +22,9 @@ export const useMenu = defineStore('menu', {
     },
     UpdateAuth(auth: boolean) {
       this.Auth = auth
+    },
+    UpdateCollapsed() {
+      this.collapsed = !this.collapsed
     }
   },
   persist: {
@@ -32,7 +35,7 @@ export const useMenu = defineStore('menu', {
       // 可以指定任何 extends Storage 的实例，默认是 sessionStorage,localStorage
       storage: sessionStorage,
       // state 中的字段名，按组打包储存
-      paths: ["menuList"]
+      paths: ["menuList", "collapsed"]
     }]
   }
 })

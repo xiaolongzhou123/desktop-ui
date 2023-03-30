@@ -27,3 +27,24 @@ export const timestampToTime = (timestamp: any) => {
     return Y + M + D + h + m + s;
 }
 
+export const isExipred = (token: string) => {
+
+    try {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const obj = JSON.parse(jsonPayload);
+        const t1 = Math.round(new Date().getTime() / 1000)
+        const t2 = obj.exp as number
+
+        if ((t1 - t2) > 0) {
+            return true
+        }
+        return false
+    } catch (e) {
+        return false
+    }
+}

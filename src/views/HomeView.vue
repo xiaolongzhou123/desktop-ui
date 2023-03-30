@@ -31,13 +31,17 @@ import navMenuVue from '@/components/navMenu.vue';
 import myHeader from '@/components/myHeader.vue';
 import myFooter from '@/components/myFooter.vue';
 import type { IUser, IUserLdap } from '@/typeing';
-import { getUserLdap } from '@/utils/request';
+import { getUserLdap } from '@/utils/http';
 import { useUser } from '@/stores';
+import { onMounted } from 'vue';
 
 const userstore = useUser()
-getUserLdap().then((res: IUserLdap) => {
-  //console.log(res)
-  userstore.UpdateUserLdap(res)
+onMounted(() => {
+
+  getUserLdap().then((res: IUserLdap) => {
+    //console.log(res)
+    userstore.UpdateUserLdap(res)
+  })
 })
 
 </script>

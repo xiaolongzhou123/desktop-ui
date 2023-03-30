@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   server: {
-    port: 4000, // 设置服务启动端口号
+    port: 5000, // 设置服务启动端口号
     open: true, // 设置服务启动时是否自动打开浏览器
     cors: true, // 允许跨域
 
@@ -29,11 +29,7 @@ export default defineConfig({
         changeOrigin: true, //是否跨域
         rewrite: (path) => path.replace('/pmsapi', '')
       },
-      '/promeapi': { //apiTest是自行设置的请求前缀，按照这个来匹配请求，有这个字段的请求，就会进到代理来
-        target: 'http://localhost:8082',
-        changeOrigin: true, //是否跨域
-        rewrite: (path) => path.replace('/promeapi', '')
-      }
+
     }
   }
 

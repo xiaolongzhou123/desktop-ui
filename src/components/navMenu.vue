@@ -1,7 +1,7 @@
 <template>
     <div>
         <t-menu v-model:expanded="expanded" theme="light" default-value="3-2" expand-mutex height="550px"
-            :collapsed="collapsed" @change="changeHandler">
+            :collapsed="menustore.collapsed" @change="changeHandler">
             <t-submenu value="3">
                 <template #icon>
                     <t-icon name="mail" />
@@ -72,9 +72,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import router from '@/router'
+import { useMenu } from '@/stores';
 
-const collapsed = ref(false);
-const collapsed2 = ref(false);
+const menustore = useMenu()
+
+//const collapsed = ref(false);
 const expanded = ref(['2', '3']);
 
 const changeHandler = (active: string) => {
@@ -84,10 +86,9 @@ const changeHandler = (active: string) => {
 
 
 const changeCollapsed = () => {
-    collapsed.value = !collapsed.value;
+    // collapsed.value = !collapsed.value;
+    menustore.UpdateCollapsed()
 };
 
-const changeCollapsed2 = () => {
-    collapsed2.value = !collapsed2.value;
-};
+
 </script>

@@ -1,4 +1,4 @@
-import request from '@/utils/request/axios'
+import request from '@/utils/http/axios'
 
 import type { IResponseData, ILogin, ILoginData } from '@/typeing'
 

@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory, type RouteLocationNamedRaw, type RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-import type { Menu, Nav } from '@/typeing'
-import { useMenu } from '@/stores'
-import { useLogin } from '@/stores'
+
 
 
 

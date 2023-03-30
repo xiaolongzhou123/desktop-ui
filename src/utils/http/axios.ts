@@ -6,6 +6,7 @@ import type { ILogin } from '@/typeing';
 
 import { Getrefresh } from './refresh';
 import { MessagePlugin } from 'tdesign-vue-next';
+import { isExipred } from '@/utils/tools'
 
 
 // const ConfigBaseURL = env.VITE_APP_BASE_SERVER + env.VITE_API_BASE_URL //默认路径，这里也可以使用env来判断环境
@@ -22,23 +23,6 @@ export interface IResponseData<T = any> {
     code: number;
     message: string;
     data: T;
-}
-function isExipred(token: string) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    const obj = JSON.parse(jsonPayload);
-    const t1 = Math.round(new Date().getTime() / 1000)
-    const t2 = obj.exp as number
-
-
-    if ((t1 - t2) > 0) {
-        return true
-    }
-    return false
 }
 
 
@@ -63,12 +47,14 @@ request.interceptors.response.use(response => {
     return response.data
 }, error => {
 
-    //401.之后刷新token
+    //console.log("error:=", error)
+    // //401.之后刷新token
     if (error.response.status === 401) {
+
         const loginstore = useLogin()
         const ok = isExipred(loginstore.Info.access_token)
-        if (ok === true) {
 
+        if (ok === true) {
             //调用刷新接口
             Getrefresh().then((res: ILogin) => {
                 console.log("==obj:", res)
@@ -78,7 +64,8 @@ request.interceptors.response.use(response => {
             }).catch(error => {
                 console.log("catch.....err", error)
             });
-
+        } else {
+            router.push("/login")
         }
     }
     const msg = error.Message !== undefined ? error.Message : ''

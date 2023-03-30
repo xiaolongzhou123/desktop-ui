@@ -2,7 +2,7 @@
 
 // import { GetMenu } from '@/utils/request/menu'
 // import { GetNav } from '@/utils/request/user'
-import { GetNav, GetMenu, Login } from '@/utils/request'
+import { GetNav, GetMenu, Login } from '@/utils/http'
 import type { ILogin, ILoginData, Menu, Nav } from '@/typeing'
 import { createLoginData } from '@/typeing'
 import { MessagePlugin } from 'tdesign-vue-next';
@@ -38,8 +38,7 @@ const FORM_RULES: Record<string, FormRule[]> = {
 };
 
 
-const navstore = useNav() // uses the testing pinia!
-const menustore = useMenu() // uses the testing pinia!
+
 const loginstore = useLogin()
 
 //git clone https://github.com/xiaolongzhou123/vue3-api
@@ -85,7 +84,7 @@ const onSubmit = (param: any) => {
   if (param.validateResult === true) {
 
     const data = createLoginData(formData.account, formData.password)
-    console.log("try===", data);
+    // console.log("try===", data);
     Login(data).then((res: ILogin) => {
       console.log("try res==", res.access_token, res.refresh_token)
       loginstore.UpdateLogin(res)
@@ -130,9 +129,9 @@ const onSubmit = (param: any) => {
         </t-form-item>
 
         <!-- <div class="check-container remember-pwd">
-                                                                                                                                                                                        <t-checkbox>记住账号</t-checkbox>
-                                                                                                                                                                                        <span class="tip">忘记账号？</span>
-                                                                                                                                                                                      </div> -->
+                                                                                                                                                                                              <t-checkbox>记住账号</t-checkbox>
+                                                                                                                                                                                              <span class="tip">忘记账号？</span>
+                                                                                                                                                                                            </div> -->
       </template>
 
       <t-form-item v-if="type !== 'qrcode'" class="btn-container">

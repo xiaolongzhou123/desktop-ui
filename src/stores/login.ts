@@ -17,6 +17,9 @@ export const useLogin = defineStore('login', {
     UpdateLogin(info: ILogin) {
       this.Info = info
     },
+    UpdateClean() {
+      this.Info = {} as ILogin
+    },
 
   },
   persist: {

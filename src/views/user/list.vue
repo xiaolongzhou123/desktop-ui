@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import type { IResponseData, IUserLdap } from '@/typeing';
-import { getUsersLdap, delUserLdap, putUserLdap } from '@/utils/request';
+import { getUsersLdap, delUserLdap, putUserLdap } from '@/utils/http';
 import { MessagePlugin } from 'tdesign-vue-next';
 import { ref } from 'vue';
 

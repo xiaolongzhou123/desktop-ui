@@ -110,7 +110,7 @@
 import type { IResponseData, IUserLdap } from '@/typeing';
 import { MessagePlugin, type FormRule } from 'tdesign-vue-next';
 import { reactive } from 'vue'
-import { addUserLdap } from '@/utils/request'
+import { addUserLdap } from '@/utils/http'
 import { getNowFormatDate } from '@/utils/tools';
 
 

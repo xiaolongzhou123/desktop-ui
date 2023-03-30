@@ -1,9 +1,11 @@
 
-import { gettime, currTimestamp, getNowFormatDate } from '@/utils/tools/common'
+import { gettime, currTimestamp, getNowFormatDate, timestampToTime, isExipred } from '@/utils/tools/common'
 
 export {
 
     gettime,
     currTimestamp,
+    timestampToTime,
+    isExipred,
     getNowFormatDate
 }

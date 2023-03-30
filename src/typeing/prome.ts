@@ -9,6 +9,7 @@ export interface IProme {
 
 export interface IPromeRes {
     status: string
+    query: string
     data: Data
 }
 
