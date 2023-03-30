@@ -15,75 +15,55 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      //  redirect: "/login",
-      //children: []
+      redirect: '/user/index',
+      children: [
+        {
+          path: '/flow/all',
+          name: 'flowall',
+          component: () => import('../views/flow/all.vue')
+        },
+        {
+          path: '/flow/ip',
+          name: 'flowip',
+          component: () => import('../views/flow/ip.vue')
+        },
+        {
+          path: '/user/index',
+          name: 'userindex',
+          component: () => import('../views/user/center.vue')
+        },
+        {
+          path: '/user/add',
+          name: 'useradd',
+          component: () => import('../views/user/add.vue')
+        },
+        {
+          path: '/user/list',
+          name: 'userlist',
+          component: () => import('../views/user/list.vue')
+        },
+      ]
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('../views/Login.vue')
     },
+
     {
       path: '/404',
       name: '404',
       component: () => import('@/views/404.vue')
+    },
+    {
+      path: '/:pathMatch(.*)',
+      redirect: '404',
     }
   ]
 })
 
 
-router.beforeEach((to, from, next) => {
-  const loginstore = useLogin()
-  console.log("to===:", to, router.getRoutes().length)
-  //判断登陆状态
-  // if (loginstore.Info.access_token !== "") {
-  //   next({ path: '/login' })
-  // }
-  next()
 
-
-
-  // //如果静态路由过少。等于静态配置。那么就直接。动态添加路由
-  // if (router.getRoutes().length === 3) {
-  //   const menu = useMenu()
-  //   const routers = generateRouter(menu.menuList)
-  //   routers.filter(one => {
-  //     console.log("one", one)
-  //     router.addRoute(one)
-  //     // next({ path: one.path })
-  //   })
-  //   //这里把，非正常的页面动态加载
-  //   router.addRoute({
-  //     path: '/:pathMatch(.*)',
-  //     redirect: '404',
-  //   })
-
-  //   if (router.getRoutes().length !== 3) {
-  //     return next({ path: to.path })
-  //   }
-  // }
-
-
-  next()
-})
-
-//生成一个新的routes
-function generateRouter(menus: Menu[]) {
-  let newRoutes = menus.map(route => {
-    let _route: RouteRecordRaw = {
-      path: route.path,
-      name: route.name,
-      component: () => import(`@/views/${route.name}.vue`),
-      children: []
-    }
-    if (route.children) {
-      _route.children = generateRouter(route.children)
-    }
-    return _route
-  });
-  return newRoutes
-
-}
 
 
 

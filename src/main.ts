@@ -10,6 +10,10 @@ import router from './router'
 
 import './assets/main.css'
 import piniaPersist from 'pinia-plugin-persist'
+
+import * as ECharts from 'echarts'
+
+
 const pinia = createPinia()
 pinia.use(piniaPersist)
 
@@ -20,3 +24,4 @@ app.use(router)
 
 
 app.mount('#app')
+

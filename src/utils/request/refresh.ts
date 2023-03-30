@@ -1,6 +1,6 @@
 import request from '@/utils/request/axios'
 
-import type { IResponseData, Nav } from '@/typeing'
+import type { IResponseData, ILogin, ILoginData, IUser } from '@/typeing'
 
 
 
@@ -10,9 +10,9 @@ import type { IResponseData, Nav } from '@/typeing'
 
 
 //{"mydata":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}],"succes":true}
-export function GetNav() {
-    return request<any, IResponseData<Nav[]>>({
-        url: "/ssoapi/nav",
+export function Getrefresh() {
+    return request<any, IResponseData<ILogin>>({
+        url: "/ssoapi/refresh_token",
         method: "get",
     }).then(res => {
         return res.data

@@ -12,7 +12,7 @@ import type { IResponseData, ILogin, ILoginData } from '@/typeing'
 //{"mydata":[{"id":1,"name":"aa"},{"id":2,"name":"bb"}],"succes":true}
 export function Login(data: ILoginData) {
     return request<any, IResponseData<ILogin>>({
-        url: "/api/login",
+        url: "/ssoapi/login",
         method: "post",
         data: data,
     }).then(res => {

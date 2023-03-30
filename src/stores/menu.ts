@@ -8,6 +8,7 @@ export const useMenu = defineStore('menu', {
     count: 0,
     name: 'abc',
     Auth: false,
+
     menuList: [] as Menu[]
   }),
   getters: {
@@ -15,7 +16,7 @@ export const useMenu = defineStore('menu', {
   },
   actions: {
     UpdateMenu(menu: Menu[]) {
-      console.log("===useMenu,UpdateMenu", menu)
+      // console.log("===useMenu,UpdateMenu", menu)
       this.menuList = menu
 
     },

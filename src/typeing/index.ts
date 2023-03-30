@@ -1,8 +1,9 @@
 import type { Menu } from './menu'
 import type { Nav } from './nav'
-import type { IUser } from './user'
+import type { IUser, IUserLdap } from './user'
 import type { IResponseData } from './axios'
 import type { ILogin, ILoginData } from './login'
+import type { IProme, IPromeRes } from './prome'
 import { createLoginData } from './login'
 
 export {
@@ -12,5 +13,8 @@ export {
     ILoginData,
     createLoginData,
     IUser,
+    IPromeRes,
+    IUserLdap,
+    IProme,
     ILogin
 }

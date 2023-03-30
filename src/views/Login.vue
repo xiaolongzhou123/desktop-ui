@@ -10,7 +10,7 @@ import type { FormInstanceFunctions, FormRule } from 'tdesign-vue-next';
 import { useNav, useMenu, useLogin } from '@/stores'
 import { reactive, ref, toRef } from 'vue'
 
-
+import router from '@/router'
 
 // const INITIAL_DATA = {
 //   phone: '',
@@ -89,6 +89,7 @@ const onSubmit = (param: any) => {
     Login(data).then((res: ILogin) => {
       console.log("try res==", res.access_token, res.refresh_token)
       loginstore.UpdateLogin(res)
+      router.push('/user/index')
 
     }).catch(error => {
       MessagePlugin.error("登陆失败：" + error);
@@ -129,9 +130,9 @@ const onSubmit = (param: any) => {
         </t-form-item>
 
         <!-- <div class="check-container remember-pwd">
-                                                                                                                                                                                  <t-checkbox>记住账号</t-checkbox>
-                                                                                                                                                                                  <span class="tip">忘记账号？</span>
-                                                                                                                                                                                </div> -->
+                                                                                                                                                                                        <t-checkbox>记住账号</t-checkbox>
+                                                                                                                                                                                        <span class="tip">忘记账号？</span>
+                                                                                                                                                                                      </div> -->
       </template>
 
       <t-form-item v-if="type !== 'qrcode'" class="btn-container">

@@ -1,6 +1,24 @@
 <template>
-  <div>
-    <h1>index</h1>
+  <div class="container">
+
+    <!-- 这里是header -->
+    <myHeader></myHeader>
+
+    <div class="main_box">
+      <!-- 这里是main，分成左和右  -->
+      <navMenuVue></navMenuVue>
+      <div class="right-box">
+        <router-view></router-view>
+      </div>
+
+    </div>
+
+
+    <!-- 这里是footer  -->
+    <!-- <div class="footer-box">
+      <myFooter></myFooter>
+    </div> -->
+
   </div>
 </template>
 
@@ -8,12 +26,44 @@
 
 
 <script setup lang="ts">
-import type { IResponseData, IUser } from '@/typeing';
-import { getUser } from '@/utils/request';
 
-getUser().then((res: IUser) => {
-  console.log(res)
-}).catch(error => {
-  console.log("获取失败", error.response.data)
-});
+import navMenuVue from '@/components/navMenu.vue';
+import myHeader from '@/components/myHeader.vue';
+import myFooter from '@/components/myFooter.vue';
+import type { IUser, IUserLdap } from '@/typeing';
+import { getUserLdap } from '@/utils/request';
+import { useUser } from '@/stores';
+
+const userstore = useUser()
+getUserLdap().then((res: IUserLdap) => {
+  //console.log(res)
+  userstore.UpdateUserLdap(res)
+})
+
 </script>
+
+<style lang="less">
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .main_box {
+    display: flex;
+    //120px是header,footer是150px
+    height: calc(100vh - 120px);
+    width: 100vw;
+
+
+    .right-box {
+      background-color: #eee;
+      width: 100%;
+    }
+
+
+  }
+
+  .footer-box {
+    height: 120px;
+  }
+}
+</style>

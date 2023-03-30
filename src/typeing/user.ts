@@ -1,6 +1,6 @@
 
 export interface IUser {
-    user: string
+    sn: string
     cn: string
     mail: string
     uid: number
@@ -10,3 +10,19 @@ export interface IUser {
     iss: string
 }
 
+export interface IUserLdap {
+    cn: string
+    myCompanyGroup: string
+    myContactReg: string
+    myDep: string
+    myEmail: string
+    myGoogle: string
+    myId: string
+    myLeader: string
+    myPhone: string
+    myPostion: string
+    myName: string
+    myReg: string
+    myTel: string
+    sn: string
+}
